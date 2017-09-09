@@ -6,9 +6,38 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content>
+  <!-- content goes here -->
+  <div class="row">
+    <div class="button-bar">
+      <button class="button button-icon icon ion-play" [click]="api.start()" />
+      <button class="button button-icon icon ion-stop" [click]="api.stop()" />
+      <button class="button button-icon icon ion-arrow-up-a" [click]="api.next()" />
+      <button class="button button-icon icon ion-arrow-down-a" [click]="api.prev()" />
+      <button class="button button-icon icon ion-shuffle" [click]="api.spin(2000)" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <!--<mk-slot api="api" items="characters" mk-class="item-avatar" />-->
+      <mk-container api="api" items="characters" mk-class="item-avatar"></mk-container>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="item range">
+        <i class="icon ion-ios-undo"></i>
+        <input type="range" name="volume" min="0" max="{{characters.length - 1}}" value="0" ng-change="api.setItem(mkSlotItem)" ng-model="mkSlotItem"
+        />
+        <i class="icon ion-ios-redo"></i>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      Item #:
+      <input type="text" name="volume" min="0" max="{{characters.length - 1}}" value="0" ng-change="api.setItem(mkSlotItem)" ng-model="mkSlotItem"
+      />
+    </div>
+  </div>
 </ion-content>

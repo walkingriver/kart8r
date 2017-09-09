@@ -1,4 +1,10 @@
-<!-- Generated template for the MkContainerComponent component -->
 <div>
-  {{text}}
+  <div class="mk-slotContainer">
+    <ul #spinner class="mk-spinner" [class]="{'mk-spinning': running}" [style]="{transform: transform}">
+      <li *ngFor="let item of items" [class]="{'mk-marquee': item.hasOverflow}" class="text-item-wrap text-center mk-slot-item"style="line-height:1em;">       
+        <img style="height:38px;" [src]="item.image"><br/>
+        <span class="mk-label">{{item.name}}</span>
+      </li>
+    </ul>
+  </div>
 </div>
