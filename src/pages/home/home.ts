@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { MkContainerComponent } from "../../components/mk-container/mk-container";
 import { MarioServiceProvider, MkItem } from './../../providers/mario-service/mario-service';
+import { SlotsPage } from "../slots/slots";
+import { TestPage } from "../test/test";
 
 @Component({
   selector: 'page-home',
@@ -16,9 +18,11 @@ export class HomePage {
     this.characters = ms.allCharacters();
   }
 
-  toggle() {
-    if (this.api.toggle) {
-      this.api.toggle();
-    }
+  gotoSlots() {
+    this.navCtrl.setRoot(SlotsPage);
+  }
+  
+  gotoTest() {
+    this.navCtrl.push(TestPage);
   }
 }

@@ -8,6 +8,8 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ComponentsModule } from "../components/components.module";
 import { MarioServiceProvider } from '../providers/mario-service/mario-service';
+import { TestPageModule } from "../pages/test/test.module";
+import { SlotsPageModule } from "../pages/slots/slots.module";
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { MarioServiceProvider } from '../providers/mario-service/mario-service';
   imports: [
     BrowserModule,
     ComponentsModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    SlotsPageModule,
+    TestPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
