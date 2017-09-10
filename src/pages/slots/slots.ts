@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 import { MkItem, MarioServiceProvider } from "../../providers/mario-service/mario-service";
+import { NativeAudio } from "@ionic-native/native-audio";
 
 @IonicPage()
 @Component({
@@ -35,11 +36,15 @@ export class SlotsPage {
   wheelSpinner = [];
   wingSpinner = [];
 
-  constructor(ms: MarioServiceProvider) {
+  constructor(ms: MarioServiceProvider, private nativeAudio: NativeAudio) {
     this.characters = ms.allCharacters();
     this.wheels = ms.allTires();
     this.wings = ms.allWings();
     this.karts = ms.allVehicles();
+
+    this.nativeAudio.preloadSimple('item-box', './assets/sounds/item-box.mp3')
+      .then(() => console.log('Sound Loaded'))
+      .catch((err) => console.error('Could not load sound file.', err));
   }
 
   ionViewDidLoad() {
@@ -64,17 +69,26 @@ export class SlotsPage {
   }
 
   shuffle(n) {
+    const shuffleTime = 2000;
+    this.nativeAudio.play('item-box');
+
+    setTimeout(() => {
+      this.nativeAudio.stop('uniqueId1')
+        .then(() => { console.log('Song stopped.') })
+        .catch((err) => { console.log('Song could not be stopped.', err) });
+    }, shuffleTime);
+
     if (n--) {
-      this.charSpinner[n].spin(2000);
-      this.kartSpinner[n].spin(2000);
-      this.wheelSpinner[n].spin(2000);
-      this.wingSpinner[n].spin(2000);
+      this.charSpinner[n].spin(shuffleTime);
+      this.kartSpinner[n].spin(shuffleTime);
+      this.wheelSpinner[n].spin(shuffleTime);
+      this.wingSpinner[n].spin(shuffleTime);
     } else {
       for (let i = 0; i < 4; i++) {
-        this.charSpinner[i].spin(2000);
-        this.kartSpinner[i].spin(2000);
-        this.wheelSpinner[i].spin(2000);
-        this.wingSpinner[i].spin(2000);
+        this.charSpinner[i].spin(shuffleTime);
+        this.kartSpinner[i].spin(shuffleTime);
+        this.wheelSpinner[i].spin(shuffleTime);
+        this.wingSpinner[i].spin(shuffleTime);
       }
     }
   }
