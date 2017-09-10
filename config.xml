@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.walkingriver.kart8r" version="0.1.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Mario Kart 8 Randomizer</name>
+    <name>Random Kart</name>
     <description>
             A 100% unauthorized character/kart/tire/glider for Nintnedo's Mario Kart 8 racing game.
     </description>
