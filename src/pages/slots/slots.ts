@@ -63,13 +63,24 @@ export class SlotsPage {
     this.wingSpinner[3] = this.wing4;
   }
 
-  shuffle() {
-    for (let i = 0; i < 4; i++) {
-      this.charSpinner[i].spin(2000);
-      this.kartSpinner[i].spin(2000);
-      this.wheelSpinner[i].spin(2000);
-      this.wingSpinner[i].spin(2000);
+  shuffle(n) {
+    if (n) {
+      this.charSpinner[n].spin(2000);
+      this.kartSpinner[n].spin(2000);
+      this.wheelSpinner[n].spin(2000);
+      this.wingSpinner[n].spin(2000);
+    } else {
+      for (let i = 0; i < 4; i++) {
+        this.charSpinner[i].spin(2000);
+        this.kartSpinner[i].spin(2000);
+        this.wheelSpinner[i].spin(2000);
+        this.wingSpinner[i].spin(2000);
+      }
     }
+  }
+
+  shufflePlayer(player) {
+    this.shuffle(player - 1);
   }
 
 }

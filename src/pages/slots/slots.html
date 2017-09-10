@@ -13,22 +13,22 @@
   <ion-grid>
     <ion-row>
       <ion-col col-3>
-        <button small block ion-button color="light">
+        <button small block ion-button (click)="shufflePlayer(1)" color="light">
           Player 1
         </button>
       </ion-col>
       <ion-col col-3>
-        <button small block ion-button color="primary">
+        <button small block ion-button (click)="shufflePlayer(2)" color="primary">
           Player 2
         </button>
       </ion-col>
       <ion-col col-3 color="danger">
-        <button small block ion-button color="danger">
+        <button small block ion-button (click)="shufflePlayer(3)" color="danger">
           Player 3
         </button>
       </ion-col>
       <ion-col col-3>
-        <button small block ion-button color="secondary">
+        <button small block ion-button (click)="shufflePlayer(4)" color="secondary">
           Player 4
         </button>
       </ion-col>
