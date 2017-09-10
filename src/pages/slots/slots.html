@@ -1,18 +1,55 @@
-<!--
-  Generated template for the SlotsPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>slots</ion-title>
+    <ion-title>Mario Kart 8 Randomizer</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="shuffle()">
+          <ion-icon name="shuffle"></ion-icon>
+        </button>
+    </ion-buttons>
   </ion-navbar>
-
 </ion-header>
 
-
-<ion-content padding>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-3>
+        <button small block ion-button color="light">
+          Player 1
+        </button>
+      </ion-col>
+      <ion-col col-3>
+        <button small block ion-button color="primary">
+          Player 2
+        </button>
+      </ion-col>
+      <ion-col col-3 color="danger">
+        <button small block ion-button color="danger">
+          Player 3
+        </button>
+      </ion-col>
+      <ion-col col-3>
+        <button small block ion-button color="secondary">
+          Player 4
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-3>
+        <mk-container #kart1 [items]="characters" mk-class="item-avatar"></mk-container>
+      </ion-col>
+      <ion-col col-3>
+        <mk-container #kart2 [items]="characters" mk-class="item-avatar"></mk-container>
+        <!-- <mk-container #slot [items]="karts" mk-class="item-avatar"></mk-container> -->
+      </ion-col>
+      <ion-col col-3>
+        <mk-container #kart3 [items]="characters" mk-class="item-avatar"></mk-container>
+        <!-- <mk-container #slot [items]="wheels" mk-class="item-avatar"></mk-container> -->
+      </ion-col>
+      <ion-col col-3>
+        <mk-container #kart4 [items]="characters" mk-class="item-avatar"></mk-container>
+        <!-- <mk-container #slot [items]="wings" mk-class="item-avatar"></mk-container> -->
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>
