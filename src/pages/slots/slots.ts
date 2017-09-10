@@ -72,12 +72,6 @@ export class SlotsPage {
     const shuffleTime = 2000;
     this.nativeAudio.play('item-box');
 
-    setTimeout(() => {
-      this.nativeAudio.stop('uniqueId1')
-        .then(() => { console.log('Song stopped.') })
-        .catch((err) => { console.log('Song could not be stopped.', err) });
-    }, shuffleTime);
-
     if (n--) {
       this.charSpinner[n].spin(shuffleTime);
       this.kartSpinner[n].spin(shuffleTime);
