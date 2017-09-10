@@ -1,23 +1,35 @@
-import { Component, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, ElementRef, Input, NgZone, ViewChild } from '@angular/core';
+import { MkItem } from "../../providers/mario-service/mario-service";
 
 @Component({
   selector: 'mk-container',
   templateUrl: 'mk-container.html'
 })
+
 export class MkContainerComponent {
   @ViewChild('spinner') spinner: ElementRef;
-  @Input() items: any[];
+  @Input() items: MkItem[];
 
   wheel: any;
+  running: boolean;
   isInitialized: boolean;
+  transform: string;
 
-  constructor() {
+  constructor(private zone: NgZone) {
     console.log('Hello MkContainerComponent Component');
 
-    this.wheel = {};
+    this.wheel = {
+      item: 0,
+      translateZ: 0,
+      itemAngle: 0,
+      itemCount: 0,
+      tiles: [],
+      spinner: {},
+      rotate: ''
+    };
   }
 
-  ngViewAfterInit() {
+  ngAfterViewInit() {
     console.log('Initializing Slot3d');
     this.wheel.spinner = this.spinner.nativeElement;
     this.wheel.tiles = this.wheel.spinner.children;
@@ -39,7 +51,7 @@ export class MkContainerComponent {
       el.style.transform = rotate + ' ' + translateZ;
 
       // if (el.scrollWidth > el.clientWidth) {
-      //   scope.items[i].hasOverflow = true;
+      //   items[i].hasOverflow = true;
       // }
     }
 
@@ -63,7 +75,7 @@ export class MkContainerComponent {
 
     // Transform the container opposite the item's transform.
     var rotate = 'rotateX(' + item * this.wheel.itemAngle + 'deg)';
-    this.wheel.scope.transform = rotate;
+    this.transform = rotate;
   }
 
   next() {
@@ -79,11 +91,14 @@ export class MkContainerComponent {
   }
 
   start() {
-    this.wheel.scope.running = true;
+    this.running = true;
   }
 
-  stop() {
-    this.wheel.scope.running = false;
+  stop(item) {
+    this.running = false;
+    if (item) {
+      this.setItem(item);
+    }
   }
 
   spin(duration) {
@@ -92,8 +107,9 @@ export class MkContainerComponent {
     this.start();
     var r = Math.floor(Math.random() * (this.wheel.itemCount - 1));
     setTimeout(() => {
-      stop();
-      this.setItem(r);
+      this.zone.run(() => {
+        this.stop(r);
+      });
     }, t);
   }
 

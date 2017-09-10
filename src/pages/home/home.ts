@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { MkContainerComponent } from "../../components/mk-container/mk-container";
-import { MarioServiceProvider } from './../../providers/mario-service/mario-service';
+import { MarioServiceProvider, MkItem } from './../../providers/mario-service/mario-service';
 
 @Component({
   selector: 'page-home',
@@ -9,10 +9,10 @@ import { MarioServiceProvider } from './../../providers/mario-service/mario-serv
 })
 export class HomePage {
   mk: MkContainerComponent;
-  characters: any[];
+  characters: MkItem[];
   api: any = {};
 
-  constructor(public navCtrl: NavController, private ms: MarioServiceProvider) {
+  constructor(public navCtrl: NavController, ms: MarioServiceProvider) {
     this.characters = ms.allCharacters();
   }
 

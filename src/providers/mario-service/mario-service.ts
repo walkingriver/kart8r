@@ -1,22 +1,20 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
-/*
-  Generated class for the MarioServiceProvider provider.
+export interface MkItem {
+  name: string,
+  image: string
+}
 
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular DI.
-*/
 @Injectable()
 export class MarioServiceProvider {
 
-  constructor(public http: Http) {
+  constructor() {
     console.log('Hello MarioServiceProvider Provider');
   }
 
   // Static data below
-  allCharacters() {
+  allCharacters(): MkItem[] {
     return [
       { name: 'Toad', image: '32px-MK8_Toad_Icon.png' },
       { name: 'Koopa', image: '32px-MK8_Koopa_Icon.png' },
@@ -57,7 +55,7 @@ export class MarioServiceProvider {
     ];
   }
 
-  allVehicles() {
+  allVehicles(): MkItem[] {
     return [
       { name: 'Standard Kart', image: '100px-StandardKartBodyMK8.png' },
       { name: 'Pipe Frame', image: '100px-PipeFrameBodyMK8.png' },
@@ -99,7 +97,7 @@ export class MarioServiceProvider {
     ];
   }
 
-  allTires() {
+  allTires(): MkItem[] {
     return [
       { name: 'Standard', image: '100px-StandardTiresMK8.png' },
       { name: 'Monster', image: '100px-MonsterTiresMK8.png' },
@@ -125,7 +123,7 @@ export class MarioServiceProvider {
     ];
   }
 
-  allWings() {
+  allWings(): MkItem[] {
     return [
       {
         image: 'SuperGliderMK8.png',

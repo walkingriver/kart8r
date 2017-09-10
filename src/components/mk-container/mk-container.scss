@@ -1,7 +1,6 @@
 mk-container {
 .mk-slotContainer {
   height: 100px;
-  padding-top: 5px;
   background-color: white;
   border-style: inset;
   border-color: antiquewhite;
@@ -10,6 +9,7 @@ mk-container {
   position: relative;
   perspective: 3000px;
   overflow: hidden;
+  text-align: center;
 }
 
 .mk-spinner {
