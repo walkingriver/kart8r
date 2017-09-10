@@ -64,7 +64,7 @@ export class SlotsPage {
   }
 
   shuffle(n) {
-    if (n) {
+    if (n--) {
       this.charSpinner[n].spin(2000);
       this.kartSpinner[n].spin(2000);
       this.wheelSpinner[n].spin(2000);
@@ -80,7 +80,7 @@ export class SlotsPage {
   }
 
   shufflePlayer(player) {
-    this.shuffle(player - 1);
+    this.shuffle(player);
   }
 
 }
