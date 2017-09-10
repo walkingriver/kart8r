@@ -1,3 +1,4 @@
+import { AdMobFree } from '@ionic-native/admob-free';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -30,6 +31,7 @@ import { SlotsPageModule } from "../pages/slots/slots.module";
     HomePage
   ],
   providers: [
+    AdMobFree,
     NativeAudio,
     StatusBar,
     SplashScreen,

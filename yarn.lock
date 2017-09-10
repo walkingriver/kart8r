@@ -44,6 +44,10 @@
   dependencies:
     tsickle "^0.21.0"
 
+"@ionic-native/admob-free@^4.2.1":
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/@ionic-native/admob-free/-/admob-free-4.2.1.tgz#6475c959877c7e0d4dc08400866b7465e87d4d7b"
+
 "@ionic-native/core@3.12.1":
   version "3.12.1"
   resolved "https://registry.yarnpkg.com/@ionic-native/core/-/core-3.12.1.tgz#5b7c7a4f5adfc8da0b9197e1843e5893acf66021"
@@ -1017,6 +1021,10 @@ cookie@0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/cookie/-/cookie-0.3.1.tgz#e7e0a1f9ef43b4c8ba925c5c5a96e806d16873bb"
 
+cordova-admob-sdk@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/cordova-admob-sdk/-/cordova-admob-sdk-0.8.0.tgz#357c01685ab17f901ee1cfcf82961f9190a14dfd"
+
 cordova-android@^6.2.3:
   version "6.2.3"
   resolved "https://registry.yarnpkg.com/cordova-android/-/cordova-android-6.2.3.tgz#249f21b6ce5f1f1c847a7ab83b16909dbed5aa28"
@@ -1059,6 +1067,10 @@ cordova-ios@^4.4.0:
     xcode "^0.9.0"
     xml-escape "^1.1.0"
 
+cordova-plugin-admob-free@^0.10.0:
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/cordova-plugin-admob-free/-/cordova-plugin-admob-free-0.10.0.tgz#987d2abf241c497d6db9f6d74efd65bac00792ba"
+
 cordova-plugin-console@^1.0.5:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/cordova-plugin-console/-/cordova-plugin-console-1.0.7.tgz#89b7a92ed1c335888dfc00d902dc417201cf3b0b"
@@ -1082,6 +1094,10 @@ cordova-plugin-statusbar@^2.2.2:
 cordova-plugin-whitelist@^1.3.1:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/cordova-plugin-whitelist/-/cordova-plugin-whitelist-1.3.2.tgz#5b6335feb9f5301f3c013b9096cb8885bdbd5076"
+
+cordova-promise-polyfill@0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/cordova-promise-polyfill/-/cordova-promise-polyfill-0.0.2.tgz#6bb7a949c56a7c318e7f554e6338c8f863e505a8"
 
 cordova-registry-mapper@^1.1.8:
   version "1.1.15"

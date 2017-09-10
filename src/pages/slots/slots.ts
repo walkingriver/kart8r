@@ -1,7 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
+import { IonicPage, Platform } from 'ionic-angular';
 import { MkItem, MarioServiceProvider } from "../../providers/mario-service/mario-service";
 import { NativeAudio } from "@ionic-native/native-audio";
+import { AdMobFree, AdMobFreeBannerConfig } from "@ionic-native/admob-free";
 
 @IonicPage()
 @Component({
@@ -36,13 +37,23 @@ export class SlotsPage {
   wheelSpinner = [];
   wingSpinner = [];
 
-  constructor(ms: MarioServiceProvider, private nativeAudio: NativeAudio) {
+  adMob = {
+    iosBanner: 'ca-app-pub-5422413832537104~8265205046',
+    iosUnitId: 'ca-app-pub-5422413832537104/7492067479',
+    androidBanner: 'ca-app-pub-5422413832537104~9882319296',
+    androidUnitId: 'ca-app-pub-5422413832537104/6984693219'
+  };
+
+  constructor(private admob: AdMobFree, 
+    ms: MarioServiceProvider, 
+    private nativeAudio: NativeAudio,
+    private platform: Platform) {
     this.characters = ms.allCharacters();
     this.wheels = ms.allTires();
     this.wings = ms.allWings();
     this.karts = ms.allVehicles();
 
-    this.nativeAudio.preloadSimple('item-box', './assets/sounds/item-box.mp3')
+    this.nativeAudio.preloadSimple('item-box', 'assets/sounds/item-box.mp3')
       .then(() => console.log('Sound Loaded'))
       .catch((err) => console.error('Could not load sound file.', err));
   }
@@ -66,9 +77,35 @@ export class SlotsPage {
     this.wingSpinner[1] = this.wing2;
     this.wingSpinner[2] = this.wing3;
     this.wingSpinner[3] = this.wing4;
+
+    this.showBanner();
+  }
+
+  showBanner() {
+    let id: string;
+
+    if (this.platform.is('ios')) {
+      id = this.adMob.iosUnitId;
+    } else {
+      id = this.adMob.androidUnitId;
+    }
+
+    console.log('Using AdMob ID: ', id);
+
+    let bannerConfig: AdMobFreeBannerConfig = {
+      isTesting: false,
+      id: id,
+      bannerAtTop: false
+    };
+
+    this.admob.banner.config(bannerConfig);
+    this.admob.banner.prepare()
+      .then(() => { })
+      .catch(e => console.error(e));
   }
 
   shuffle(n) {
+    this.showBanner();
     const shuffleTime = 2000;
     this.nativeAudio.play('item-box');
 
@@ -91,4 +128,5 @@ export class SlotsPage {
     this.shuffle(player);
   }
 
+  
 }
