@@ -122,15 +122,18 @@ export class SlotsPage {
     let chars = this.randomizeChar();
     console.log('Valid Chars: ', chars);
 
+    let karts = this.randomizeKart();
+    console.log('Valid Karts: ', karts);
+
     if (n--) {
       this.charSpinner[n].spin(shuffleTime, chars[0].name);
-      this.kartSpinner[n].spin(shuffleTime);
+      this.kartSpinner[n].spin(shuffleTime, karts[0].name);
       this.wheelSpinner[n].spin(shuffleTime);
       this.wingSpinner[n].spin(shuffleTime);
     } else {
       for (let i = 0; i < 4; i++) {
         this.charSpinner[i].spin(shuffleTime, chars[i].name);
-        this.kartSpinner[i].spin(shuffleTime);
+        this.kartSpinner[i].spin(shuffleTime, karts[i].name);
         this.wheelSpinner[i].spin(shuffleTime);
         this.wingSpinner[i].spin(shuffleTime);
       }
@@ -150,9 +153,15 @@ export class SlotsPage {
 
     return _.shuffle(characters);
   }
-
+  
   randomizeKart() {
-
+    let karts = _.filter(this.karts, (i: MkItem, x: number) => {
+      if (i.itemType === 'k' && this.settings.includeKarts) { return x; }
+      if (i.itemType === 'b' && this.settings.includeBikes) { return x; }
+      if (i.itemType === 'a' && this.settings.includeATVs) { return x; }
+    });
+  
+    return _.shuffle(karts);
   }
 
   randomizeWing() {
