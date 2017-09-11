@@ -30,4 +30,16 @@ export class SettingsPage {
   ionViewWillUnload() {
     return this.settingsService.saveSettings(this.settings);
   }
+
+  ionViewCanLeave() {
+    return this.hasOneCharacter() && this.hasOneVehicle();
+  }
+
+  hasOneCharacter() {
+    return (this.settings.includeSmall || this.settings.includeMedium || this.settings.includeLarge);
+  }
+
+  hasOneVehicle() {
+    return (this.settings.includeATVs || this.settings.includeBikes || this.settings.includeKarts);
+  }
 }
