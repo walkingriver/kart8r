@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the SettingsPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+import { IonicPage } from 'ionic-angular';
+import { SettingsProvider } from '../../providers/settings/settings';
 
 @IonicPage()
 @Component({
@@ -15,19 +9,25 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class SettingsPage {
 
-  includeSmall: boolean = true;
-  includeMedium: boolean = true;
-  includeLarge: boolean = true;
-  includeKarts: boolean = true;
-  includeBikes: boolean = true;
-  includeATVs: boolean = true;
-  allowDuplicates: boolean = true;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  settings = {
+    includeSmall: true,
+    includeMedium: true,
+    includeLarge: true,
+    includeKarts: true,
+    includeBikes: true,
+    includeATVs: true,
+    allowDuplicates: true
   }
 
-  ionViewDidLoad() {
+  constructor(private settingsService: SettingsProvider) {
+  }
+
+  async ionViewDidLoad() {
     console.log('ionViewDidLoad SettingsPage');
+    this.settings = await this.settingsService.loadSettings();
   }
 
+  ionViewWillUnload() {
+    return this.settingsService.saveSettings(this.settings);
+  }
 }

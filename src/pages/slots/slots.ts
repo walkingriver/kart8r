@@ -3,6 +3,8 @@ import { IonicPage, Platform } from 'ionic-angular';
 import { MkItem, MarioServiceProvider } from "../../providers/mario-service/mario-service";
 import { NativeAudio } from "@ionic-native/native-audio";
 import { AdMobFree, AdMobFreeBannerConfig } from "@ionic-native/admob-free";
+import { SettingsProvider } from '../../providers/settings/settings';
+import * as _ from 'lodash';
 
 @IonicPage()
 @Component({
@@ -44,10 +46,13 @@ export class SlotsPage {
     androidUnitId: 'ca-app-pub-5422413832537104/6984693219'
   };
 
-  constructor(private admob: AdMobFree, 
-    ms: MarioServiceProvider, 
+  settings;
+
+  constructor(private admob: AdMobFree,
+    private ms: MarioServiceProvider,
     private nativeAudio: NativeAudio,
-    private platform: Platform) {
+    private platform: Platform,
+    private settingsService: SettingsProvider) {
     this.characters = ms.allCharacters();
     this.wheels = ms.allTires();
     this.wings = ms.allWings();
@@ -56,6 +61,15 @@ export class SlotsPage {
     this.nativeAudio.preloadSimple('item-box', 'assets/sounds/item-box.mp3')
       .then(() => console.log('Sound Loaded'))
       .catch((err) => console.error('Could not load sound file.', err));
+  }
+
+  async ionViewWillEnter() {
+    // this.settings = await this.settingsService.loadSettings();
+    // this.characters = _.filter(this.ms.allCharacters(), (i: MkItem) => {
+    //   if (i.itemType === 's' && this.settings.includeSmall) { return i; }
+    //   if (i.itemType === 'm' && this.settings.includeMedium) { return i; }
+    //   if (i.itemType === 'l' && this.settings.includeLarge) { return i; }
+    // });
   }
 
   ionViewDidLoad() {
@@ -128,5 +142,5 @@ export class SlotsPage {
     this.shuffle(player);
   }
 
-  
+
 }

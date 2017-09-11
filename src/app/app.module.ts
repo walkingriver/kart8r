@@ -19,6 +19,9 @@ import { TermsPage } from '../pages/terms/terms';
 import { SettingsPageModule } from '../pages/settings/settings.module';
 import { LicenseProvider } from '../providers/license';
 import { HttpModule } from '@angular/http';
+import { IonicStorageModule } from '@ionic/storage';
+import { SettingsProvider } from '../providers/settings/settings';
+
 
 @NgModule({
   declarations: [
@@ -34,6 +37,7 @@ import { HttpModule } from '@angular/http';
     ComponentsModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
     SettingsPageModule,
     SlotsPageModule,
     TestPageModule
@@ -54,7 +58,9 @@ import { HttpModule } from '@angular/http';
     MarioServiceProvider,
     NativeAudio,
     SplashScreen,
-    StatusBar
+    StatusBar,
+    Storage,
+    SettingsProvider
   ]
 })
 export class AppModule {}

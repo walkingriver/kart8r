@@ -20,15 +20,15 @@
     </ion-card-header>
     <ion-item>
       <ion-label>Include Small</ion-label>
-      <ion-checkbox [(ngModel)]="includeSmall"></ion-checkbox>
+      <ion-checkbox [(ngModel)]="settings.includeSmall"></ion-checkbox>
     </ion-item>
     <ion-item>
       <ion-label>Include Medium</ion-label>
-      <ion-checkbox [(ngModel)]="includeMedium"></ion-checkbox>
+      <ion-checkbox [(ngModel)]="settings.includeMedium"></ion-checkbox>
     </ion-item>
     <ion-item>
       <ion-label>Include Large</ion-label>
-      <ion-checkbox [(ngModel)]="includeLarge"></ion-checkbox>
+      <ion-checkbox [(ngModel)]="settings.includeLarge"></ion-checkbox>
     </ion-item>
 
     <ion-card-header>
@@ -36,15 +36,15 @@
     </ion-card-header>  
     <ion-item>
       <ion-label>Include Karts</ion-label>
-      <ion-checkbox [(ngModel)]="includeKarts"></ion-checkbox>
+      <ion-checkbox [(ngModel)]="settings.includeKarts"></ion-checkbox>
     </ion-item>  
     <ion-item>
       <ion-label>Include Bikes</ion-label>
-      <ion-checkbox [(ngModel)]="includeBikes"></ion-checkbox>
+      <ion-checkbox [(ngModel)]="settings.includeBikes"></ion-checkbox>
     </ion-item>  
     <ion-item>
       <ion-label>Include ATVs</ion-label>
-      <ion-checkbox [(ngModel)]="includeATVs"></ion-checkbox>
+      <ion-checkbox [(ngModel)]="settings.includeATVs"></ion-checkbox>
     </ion-item>  
 
     <ion-card-header>
