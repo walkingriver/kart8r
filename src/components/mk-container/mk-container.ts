@@ -115,23 +115,28 @@ export class MkContainerComponent {
   }
 
   spin(duration, name) {
-    var t = duration || 5000;
-    var r: number = -1;
-    
-    this.start();
-    if (name) {
-      r = this.getItemByName(name);
-    } 
-    
-    if (r < 0) {
-      r = Math.floor(Math.random() * (this.wheel.itemCount - 1));
-    }
+    return new Promise((resolve, reject) => {
+      var t = duration || 5000;
+      var r: number = -1;
 
-    setTimeout(() => {
-      this.zone.run(() => {
-        this.stop(r);
-      });
-    }, t);
+      setTimeout(() => {
+        this.start();
+        if (name) {
+          r = this.getItemByName(name);
+        }
+
+        if (r < 0) {
+          r = Math.floor(Math.random() * (this.wheel.itemCount - 1));
+        }
+
+        setTimeout(() => {
+          this.zone.run(() => {
+            this.stop(r);
+            resolve(r);
+          });
+        }, t);
+      }, 1);
+    });
   }
 
   getImage(item): string {

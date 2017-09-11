@@ -101,7 +101,7 @@ export class SlotsPage {
     return 'assets/sounds/item-box.mp3';
   }
 
-  showBanner() {
+  showBanner(): Promise<any> {
     let id: string;
 
     if (this.platform.is('ios')) {
@@ -119,37 +119,46 @@ export class SlotsPage {
     };
 
     this.admob.banner.config(bannerConfig);
-    this.admob.banner.prepare()
+    return this.admob.banner.prepare()
       .then(() => { })
       .catch(e => console.error(e));
   }
 
-  shuffle(n) {
-    this.showBanner();
+  async shuffle(n) {
+    
     const shuffleTime = 2000;
     this.nativeAudio.play('item-box');
-
+    
     let chars = this.randomizeChar();
     console.log('Valid Chars: ', chars);
-
+    
     let karts = this.randomizeKart();
     console.log('Valid Karts: ', karts);
-
+    
     let wheels = this.randomizeTire();
     let wings = this.randomizeWing();
-
+    
     if (n--) {
-      this.charSpinner[n].spin(shuffleTime, chars[0].name);
-      this.kartSpinner[n].spin(shuffleTime, karts[0].name);
-      this.wheelSpinner[n].spin(shuffleTime, wheels[0].name);
-      this.wingSpinner[n].spin(shuffleTime, wings[0].name);
-    } else {
-      for (let i = 0; i < 4; i++) {
-        this.charSpinner[i].spin(shuffleTime, chars[i].name);
-        this.kartSpinner[i].spin(shuffleTime, karts[i].name);
-        this.wheelSpinner[i].spin(shuffleTime, wheels[i].name);
-        this.wingSpinner[i].spin(shuffleTime, wings[i].name);
-      }
+      await Promise.all([
+        this.charSpinner[n].spin(shuffleTime, chars[0].name),
+        this.kartSpinner[n].spin(shuffleTime, karts[0].name),
+        this.wheelSpinner[n].spin(shuffleTime, wheels[0].name),
+        this.wingSpinner[n].spin(shuffleTime, wings[0].name)
+      ]);
+      this.showBanner()
+        .then(() => {console.log('Ad shown')});
+      } else {
+        let promises = [];
+        for (let i = 0; i < 4; i++) {
+          promises.push(this.charSpinner[i].spin(shuffleTime, chars[i].name));
+          promises.push(this.kartSpinner[i].spin(shuffleTime, karts[i].name));
+          promises.push(this.wheelSpinner[i].spin(shuffleTime, wheels[i].name));
+          promises.push(this.wingSpinner[i].spin(shuffleTime, wings[i].name));
+        }
+        
+        await Promise.all(promises);
+        this.showBanner()
+          .then(() => {console.log('Ad shown')});
     }
   }
 
