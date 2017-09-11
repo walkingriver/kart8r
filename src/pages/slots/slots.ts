@@ -57,10 +57,6 @@ export class SlotsPage {
     this.wheels = ms.allTires();
     this.wings = ms.allWings();
     this.karts = ms.allVehicles();
-
-    this.nativeAudio.preloadSimple('item-box', 'assets/sounds/item-box.mp3')
-      .then(() => console.log('Sound Loaded'))
-      .catch((err) => console.error('Could not load sound file.', err));
   }
 
   async ionViewWillEnter() {
@@ -68,7 +64,7 @@ export class SlotsPage {
     console.log('Settings: ', this.settings);
   }
 
-  ionViewDidLoad() {
+  async ionViewDidLoad() {
     console.log('ionViewDidLoad SlotsPage');
 
     this.charSpinner[0] = this.char1;
@@ -87,8 +83,22 @@ export class SlotsPage {
     this.wingSpinner[1] = this.wing2;
     this.wingSpinner[2] = this.wing3;
     this.wingSpinner[3] = this.wing4;
+    
+    await this.platform.ready();
+    let soundFile = this.getSoundFile();
+    console.log('Looking for sound file: ', soundFile);
+    this.nativeAudio.preloadSimple('item-box', soundFile)
+    .then(() => console.log('Sound Loaded'))
+    .catch((err) => console.error('Could not load sound file.', err));
 
     this.showBanner();
+  }
+
+  getSoundFile() {
+    // if (this.platform.is('android')) {
+    //   return 'file:///android_asset/www/assets/sounds/item-box.mp3';
+    // }
+    return 'assets/sounds/item-box.mp3';
   }
 
   showBanner() {
@@ -175,15 +185,15 @@ export class SlotsPage {
       return _.shuffle(karts);
     }
   }
-  
+
   randomizeWing() {
     if (this.settings.allowDuplicates) {
       return this.buildRandomList(this.wings, 4);
     } else {
       return _.shuffle(this.wings);
-    }    
+    }
   }
-  
+
   randomizeTire() {
     if (this.settings.allowDuplicates) {
       return this.buildRandomList(this.wheels, 4);

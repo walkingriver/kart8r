@@ -1,3 +1,4 @@
+import { Platform } from 'ionic-angular';
 import { Component, ElementRef, Input, NgZone, ViewChild } from '@angular/core';
 import { MkItem } from "../../providers/mario-service/mario-service";
 
@@ -15,7 +16,7 @@ export class MkContainerComponent {
   isInitialized: boolean;
   transform: string;
 
-  constructor(private zone: NgZone) {
+  constructor(private zone: NgZone, private platform: Platform) {
     console.log('Hello MkContainerComponent Component');
 
     this.wheel = {
@@ -134,6 +135,11 @@ export class MkContainerComponent {
   }
 
   getImage(item): string {
+    if (this.platform.is('ios')) {
+      return `assets/images/${item.image}`;
+    } else if (this.platform.is('android')) {
+      return `assets/images/${item.image}`;
+    }
     return `../assets/images/${item.image}`;
   }
 }
