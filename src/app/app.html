@@ -1,1 +1,28 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu side="start" [content]="content">
+  <ion-header color="dark">
+    <ion-toolbar color="dark">
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content color="dark">
+    <ion-list>
+      <ion-item (click)="settings()" menuClose>
+        Settings
+      </ion-item>
+      <ion-item (click)="goAbout()" menuClose>
+        About
+      </ion-item>
+      <ion-item (click)="goTerms()" menuClose>
+        Terms &amp; Conditions
+      </ion-item>
+      <ion-item (click)="goPrivacy()" menuClose>
+        Privacy
+      </ion-item>
+      <ion-item (click)="goAcknowledgements()" menuClose>
+        Acknowledgements
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-nav #content [root]="rootPage"></ion-nav>

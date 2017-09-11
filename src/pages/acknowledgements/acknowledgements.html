@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-navbar color="dark">
+    <ion-title>Acknowledgements</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <p>This application makes use of the following third-party libraries:</p>
+      <ion-list>
+        <ion-item text-wrap *ngFor="let license of licenses">
+          <ng-container *ngIf="license.name.length else single">
+            <div *ngFor="let package of license.name; let i = index">
+              <h2>{{ license.name[i] }}</h2>
+              <p>{{ license.description[i] }}</p>
+              <br/>
+            </div>
+          </ng-container>
+          <ng-template #single>
+            <h2>{{ license.name }}</h2>
+            <p>{{ license.description }}</p>
+          </ng-template>
+          <a [href]="license.licenseUrl" target="_blank">{{ license.licenses }}</a>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

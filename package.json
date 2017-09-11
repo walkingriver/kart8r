@@ -5,6 +5,7 @@
     "homepage": "http://ionicframework.com/",
     "private": true,
     "scripts": {
+        "license-check": "license-checker --production --customPath customformat.json --json > src/assets/licenses.json",
         "clean": "ionic-app-scripts clean",
         "build": "ionic-app-scripts build",
         "lint": "ionic-app-scripts lint",
@@ -45,6 +46,7 @@
         "zone.js": "0.8.12"
     },
     "devDependencies": {
+        "license-checker": "^14.0.0",
         "@ionic/app-scripts": "2.1.4",
         "typescript": "2.3.4"
     },
