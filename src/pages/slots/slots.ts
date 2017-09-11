@@ -3,7 +3,7 @@ import { IonicPage, Platform } from 'ionic-angular';
 import { MkItem, MarioServiceProvider } from "../../providers/mario-service/mario-service";
 import { NativeAudio } from "@ionic-native/native-audio";
 import { AdMobFree, AdMobFreeBannerConfig } from "@ionic-native/admob-free";
-import { SettingsProvider } from '../../providers/settings/settings';
+import { SettingsProvider, KartSettings } from '../../providers/settings/settings';
 import * as _ from 'lodash';
 
 @IonicPage()
@@ -46,7 +46,7 @@ export class SlotsPage {
     androidUnitId: 'ca-app-pub-5422413832537104/6984693219'
   };
 
-  settings;
+  settings: KartSettings;
 
   constructor(private admob: AdMobFree,
     ms: MarioServiceProvider,
@@ -125,17 +125,20 @@ export class SlotsPage {
     let karts = this.randomizeKart();
     console.log('Valid Karts: ', karts);
 
+    let wheels = this.randomizeTire();
+    let wings = this.randomizeWing();
+
     if (n--) {
       this.charSpinner[n].spin(shuffleTime, chars[0].name);
       this.kartSpinner[n].spin(shuffleTime, karts[0].name);
-      this.wheelSpinner[n].spin(shuffleTime);
-      this.wingSpinner[n].spin(shuffleTime);
+      this.wheelSpinner[n].spin(shuffleTime, wheels[0].name);
+      this.wingSpinner[n].spin(shuffleTime, wings[0].name);
     } else {
       for (let i = 0; i < 4; i++) {
         this.charSpinner[i].spin(shuffleTime, chars[i].name);
         this.kartSpinner[i].spin(shuffleTime, karts[i].name);
-        this.wheelSpinner[i].spin(shuffleTime);
-        this.wingSpinner[i].spin(shuffleTime);
+        this.wheelSpinner[i].spin(shuffleTime, wheels[i].name);
+        this.wingSpinner[i].spin(shuffleTime, wings[i].name);
       }
     }
   }
@@ -152,24 +155,51 @@ export class SlotsPage {
       if (i.itemType === 'mii' && this.settings.includeMii) { return i; }
     });
 
-    return _.shuffle(characters);
+    if (this.settings.allowDuplicates) {
+      return this.buildRandomList(characters, 4);
+    } else {
+      return _.shuffle(characters);
+    }
   }
-  
+
   randomizeKart() {
     let karts = _.filter(this.karts, (i: MkItem) => {
       if (i.itemType === 'k' && this.settings.includeKarts) { return i; }
       if (i.itemType === 'b' && this.settings.includeBikes) { return i; }
       if (i.itemType === 'a' && this.settings.includeATVs) { return i; }
     });
+
+    if (this.settings.allowDuplicates) {
+      return this.buildRandomList(this.karts, 4);
+    } else {
+      return _.shuffle(karts);
+    }
+  }
   
-    return _.shuffle(karts);
-  }
-
   randomizeWing() {
-
+    if (this.settings.allowDuplicates) {
+      return this.buildRandomList(this.wings, 4);
+    } else {
+      return _.shuffle(this.wings);
+    }    
+  }
+  
+  randomizeTire() {
+    if (this.settings.allowDuplicates) {
+      return this.buildRandomList(this.wheels, 4);
+    } else {
+      return _.shuffle(this.wheels);
+    }
   }
 
-  randomizeTire() {
+  buildRandomList(list: MkItem[], count: number): MkItem[] {
+    let result = <MkItem[]>[];
 
+    for (let i = 0; i < count; i++) {
+      let r = Math.floor(Math.random() * (list.length - 1));
+      result.push(list[r]);
+    }
+
+    return result;
   }
 }
