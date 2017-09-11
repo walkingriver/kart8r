@@ -5,6 +5,7 @@ export interface KartSettings {
   includeSmall: boolean,
   includeMedium: boolean,
   includeLarge: boolean,
+  includeMii: boolean,
   includeKarts: boolean,
   includeBikes: boolean,
   includeATVs: boolean,
@@ -18,6 +19,7 @@ export class SettingsProvider {
     includeSmall: true,
     includeMedium: true,
     includeLarge: true,
+    includeMii: true,
     includeKarts: true,
     includeBikes: true,
     includeATVs: true,
@@ -40,7 +42,9 @@ export class SettingsProvider {
       return Promise.resolve(this.settingsCache);
     }
 
-    this.settingsCache = (await this.storage.get('kart-settings')) || this.defaultSettings;
+    this.settingsCache = <KartSettings>{};
+    Object.assign(this.settingsCache, this.defaultSettings);
+    Object.assign(this.settingsCache, await this.storage.get('kart-settings'));
 
     return this.settingsCache;
   }

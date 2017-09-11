@@ -52,7 +52,7 @@ export class MarioServiceProvider {
       { itemType: 'l', name: 'Morton', image: '32px-MK8_Morton_Icon.png' },
       { itemType: 'l', name: 'Link', image: '32px-MK8_Link_Icon.png' },
       { itemType: 'l', name: 'Dry Bowser', image: '32px-MK8_Dry_Bowser_Icon.png' },
-      { itemType: '', name: 'Mii', image: '32px-Mii_MK8.png' }
+      { itemType: 'mii', name: 'Mii', image: '32px-Mii_MK8.png' }
     ];
   }
 

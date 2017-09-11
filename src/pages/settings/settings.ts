@@ -12,6 +12,7 @@ export class SettingsPage {
     includeSmall: true,
     includeMedium: true,
     includeLarge: true,
+    includeMii: true,
     includeKarts: true,
     includeBikes: true,
     includeATVs: true,

@@ -145,20 +145,21 @@ export class SlotsPage {
   }
 
   randomizeChar() {
-    let characters = _.filter(this.characters, (i: MkItem, x: number) => {
-      if (i.itemType === 's' && this.settings.includeSmall) { return x; }
-      if (i.itemType === 'm' && this.settings.includeMedium) { return x; }
-      if (i.itemType === 'l' && this.settings.includeLarge) { return x; }
+    let characters = _.filter(this.characters, (i: MkItem) => {
+      if (i.itemType === 's' && this.settings.includeSmall) { return i; }
+      if (i.itemType === 'm' && this.settings.includeMedium) { return i; }
+      if (i.itemType === 'l' && this.settings.includeLarge) { return i; }
+      if (i.itemType === 'mii' && this.settings.includeMii) { return i; }
     });
 
     return _.shuffle(characters);
   }
   
   randomizeKart() {
-    let karts = _.filter(this.karts, (i: MkItem, x: number) => {
-      if (i.itemType === 'k' && this.settings.includeKarts) { return x; }
-      if (i.itemType === 'b' && this.settings.includeBikes) { return x; }
-      if (i.itemType === 'a' && this.settings.includeATVs) { return x; }
+    let karts = _.filter(this.karts, (i: MkItem) => {
+      if (i.itemType === 'k' && this.settings.includeKarts) { return i; }
+      if (i.itemType === 'b' && this.settings.includeBikes) { return i; }
+      if (i.itemType === 'a' && this.settings.includeATVs) { return i; }
     });
   
     return _.shuffle(karts);
