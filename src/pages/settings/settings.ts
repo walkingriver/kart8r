@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
-import { SettingsProvider } from '../../providers/settings/settings';
+import { SettingsProvider, KartSettings } from '../../providers/settings/settings';
 
 @IonicPage()
 @Component({
@@ -8,8 +8,7 @@ import { SettingsProvider } from '../../providers/settings/settings';
   templateUrl: 'settings.html',
 })
 export class SettingsPage {
-
-  settings = {
+  settings: KartSettings = {
     includeSmall: true,
     includeMedium: true,
     includeLarge: true,

@@ -49,7 +49,7 @@ export class SlotsPage {
   settings;
 
   constructor(private admob: AdMobFree,
-    private ms: MarioServiceProvider,
+    ms: MarioServiceProvider,
     private nativeAudio: NativeAudio,
     private platform: Platform,
     private settingsService: SettingsProvider) {
@@ -64,12 +64,8 @@ export class SlotsPage {
   }
 
   async ionViewWillEnter() {
-    // this.settings = await this.settingsService.loadSettings();
-    // this.characters = _.filter(this.ms.allCharacters(), (i: MkItem) => {
-    //   if (i.itemType === 's' && this.settings.includeSmall) { return i; }
-    //   if (i.itemType === 'm' && this.settings.includeMedium) { return i; }
-    //   if (i.itemType === 'l' && this.settings.includeLarge) { return i; }
-    // });
+    this.settings = await this.settingsService.loadSettings();
+    console.log('Settings: ', this.settings);
   }
 
   ionViewDidLoad() {
@@ -123,14 +119,17 @@ export class SlotsPage {
     const shuffleTime = 2000;
     this.nativeAudio.play('item-box');
 
+    let chars = this.randomizeChar();
+    console.log('Valid Chars: ', chars);
+
     if (n--) {
-      this.charSpinner[n].spin(shuffleTime);
+      this.charSpinner[n].spin(shuffleTime, chars[0].name);
       this.kartSpinner[n].spin(shuffleTime);
       this.wheelSpinner[n].spin(shuffleTime);
       this.wingSpinner[n].spin(shuffleTime);
     } else {
       for (let i = 0; i < 4; i++) {
-        this.charSpinner[i].spin(shuffleTime);
+        this.charSpinner[i].spin(shuffleTime, chars[i].name);
         this.kartSpinner[i].spin(shuffleTime);
         this.wheelSpinner[i].spin(shuffleTime);
         this.wingSpinner[i].spin(shuffleTime);
@@ -142,5 +141,25 @@ export class SlotsPage {
     this.shuffle(player);
   }
 
+  randomizeChar() {
+    let characters = _.filter(this.characters, (i: MkItem, x: number) => {
+      if (i.itemType === 's' && this.settings.includeSmall) { return x; }
+      if (i.itemType === 'm' && this.settings.includeMedium) { return x; }
+      if (i.itemType === 'l' && this.settings.includeLarge) { return x; }
+    });
 
+    return _.shuffle(characters);
+  }
+
+  randomizeKart() {
+
+  }
+
+  randomizeWing() {
+
+  }
+
+  randomizeTire() {
+
+  }
 }

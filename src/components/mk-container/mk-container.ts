@@ -68,6 +68,18 @@ export class MkContainerComponent {
     this.isInitialized = true;
   }
 
+  getItemByName(name) {
+    let item: number = -1;
+    // Find the item by its name
+    for (let i = 0; i < this.items.length; i++) {
+      if (this.items[i].name === name) {
+        return i;
+      }
+    }
+
+    return item;
+  }
+
   setItem(item) {
     if (item < 0 || item > this.wheel.itemCount) { item = 0; }
 
@@ -101,11 +113,19 @@ export class MkContainerComponent {
     }
   }
 
-  spin(duration) {
+  spin(duration, name) {
     var t = duration || 5000;
-
+    var r: number = -1;
+    
     this.start();
-    var r = Math.floor(Math.random() * (this.wheel.itemCount - 1));
+    if (name) {
+      r = this.getItemByName(name);
+    } 
+    
+    if (r < 0) {
+      r = Math.floor(Math.random() * (this.wheel.itemCount - 1));
+    }
+
     setTimeout(() => {
       this.zone.run(() => {
         this.stop(r);

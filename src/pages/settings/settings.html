@@ -52,8 +52,12 @@
     </ion-card-header>
     <ion-item>
       <ion-label>Allow Duplicates</ion-label>
-      <ion-checkbox [(ngModel)]="allowDuplicates"></ion-checkbox>
+      <ion-checkbox [(ngModel)]="settings.allowDuplicates"></ion-checkbox>
     </ion-item>
 
+    <pre>
+      {{settings|json}}
+    </pre>
+    
   </ion-card>
 </ion-content>
