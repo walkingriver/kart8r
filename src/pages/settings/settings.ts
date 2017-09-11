@@ -15,6 +15,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class SettingsPage {
 
+  includeSmall: boolean = true;
+  includeMedium: boolean = true;
+  includeLarge: boolean = true;
+  includeKarts: boolean = true;
+  includeBikes: boolean = true;
+  includeATVs: boolean = true;
+  allowDuplicates: boolean = true;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
