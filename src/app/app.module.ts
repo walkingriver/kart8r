@@ -12,31 +12,49 @@ import { ComponentsModule } from "../components/components.module";
 import { MarioServiceProvider } from '../providers/mario-service/mario-service';
 import { TestPageModule } from "../pages/test/test.module";
 import { SlotsPageModule } from "../pages/slots/slots.module";
+import { AboutPage } from '../pages/about/about';
+import { AcknowledgementsPage } from '../pages/acknowledgements/acknowledgements';
+import { PrivacyPage } from '../pages/privacy/privacy';
+import { TermsPage } from '../pages/terms/terms';
+import { SettingsPageModule } from '../pages/settings/settings.module';
+import { LicenseProvider } from '../providers/license';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
+    AboutPage,
+    AcknowledgementsPage,
+    HomePage,
     MyApp,
-    HomePage
+    PrivacyPage,
+    TermsPage
   ],
   imports: [
     BrowserModule,
     ComponentsModule,
+    HttpModule,
     IonicModule.forRoot(MyApp),
+    SettingsPageModule,
     SlotsPageModule,
     TestPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
+    AboutPage,
+    AcknowledgementsPage,
+    HomePage,
     MyApp,
-    HomePage
+    PrivacyPage,
+    TermsPage
   ],
   providers: [
     AdMobFree,
-    NativeAudio,
-    StatusBar,
-    SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    MarioServiceProvider
+    LicenseProvider,
+    MarioServiceProvider,
+    NativeAudio,
+    SplashScreen,
+    StatusBar
   ]
 })
 export class AppModule {}

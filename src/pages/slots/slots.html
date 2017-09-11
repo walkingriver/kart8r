@@ -1,5 +1,10 @@
 <ion-header>
   <ion-navbar>
+    <ion-buttons left>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title>Random Kart</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="shuffle()">
@@ -74,27 +79,27 @@
       </ion-col>
     </ion-row>
     <ion-row>
-        <ion-col col-3>
-          <button small block ion-button (click)="shufflePlayer(1)" color="light">
+      <ion-col col-3>
+        <button small block ion-button (click)="shufflePlayer(1)" color="light">
             Player 1
           </button>
-        </ion-col>
-        <ion-col col-3>
-          <button small block ion-button (click)="shufflePlayer(2)" color="primary">
+      </ion-col>
+      <ion-col col-3>
+        <button small block ion-button (click)="shufflePlayer(2)" color="primary">
             Player 2
           </button>
-        </ion-col>
-        <ion-col col-3 color="danger">
-          <button small block ion-button (click)="shufflePlayer(3)" color="danger">
+      </ion-col>
+      <ion-col col-3 color="danger">
+        <button small block ion-button (click)="shufflePlayer(3)" color="danger">
             Player 3
           </button>
-        </ion-col>
-        <ion-col col-3>
-          <button small block ion-button (click)="shufflePlayer(4)" color="secondary">
+      </ion-col>
+      <ion-col col-3>
+        <button small block ion-button (click)="shufflePlayer(4)" color="secondary">
             Player 4
           </button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>

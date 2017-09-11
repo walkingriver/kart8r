@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import { License } from "../../app/license";
-import { LicenseProvider } from "../../providers/license";
+import { License } from '../../app/license';
+import { LicenseProvider } from '../../providers/license';
 
 @Component({
   selector: 'page-acknowledgements',
@@ -10,7 +9,7 @@ import { LicenseProvider } from "../../providers/license";
 export class AcknowledgementsPage {
   licenses: License[];
 
-  constructor(public navCtrl: NavController, private licenseProvider: LicenseProvider) { }
+  constructor(private licenseProvider: LicenseProvider) { }
 
   async ionViewDidLoad() {
     this.licenses = await this.licenseProvider.getLicenses();
