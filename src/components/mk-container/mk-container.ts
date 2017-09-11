@@ -113,4 +113,7 @@ export class MkContainerComponent {
     }, t);
   }
 
+  getImage(item): string {
+    return `../assets/images/${item.image}`;
+  }
 }
