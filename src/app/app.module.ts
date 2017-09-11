@@ -1,3 +1,7 @@
+import { TermsPageModule } from './../pages/terms/terms.module';
+import { AcknowledgementsPageModule } from './../pages/acknowledgements/acknowledgements.module';
+import { PrivacyPageModule } from './../pages/privacy/privacy.module';
+import { AboutPageModule } from './../pages/about/about.module';
 import { AdMobFree } from '@ionic-native/admob-free';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -10,57 +14,46 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ComponentsModule } from "../components/components.module";
 import { MarioServiceProvider } from '../providers/mario-service/mario-service';
-import { TestPageModule } from "../pages/test/test.module";
 import { SlotsPageModule } from "../pages/slots/slots.module";
-import { AboutPage } from '../pages/about/about';
-import { AcknowledgementsPage } from '../pages/acknowledgements/acknowledgements';
-import { PrivacyPage } from '../pages/privacy/privacy';
-import { TermsPage } from '../pages/terms/terms';
 import { SettingsPageModule } from '../pages/settings/settings.module';
 import { LicenseProvider } from '../providers/license';
 import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { SettingsProvider } from '../providers/settings/settings';
 
-
 @NgModule({
   declarations: [
-    AboutPage,
-    AcknowledgementsPage,
     HomePage,
-    MyApp,
-    PrivacyPage,
-    TermsPage
+    MyApp
   ],
   imports: [
+    AboutPageModule,
+    AcknowledgementsPageModule,
     BrowserModule,
     ComponentsModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
+    PrivacyPageModule,
     SettingsPageModule,
     SlotsPageModule,
-    TestPageModule
+    TermsPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    AboutPage,
-    AcknowledgementsPage,
     HomePage,
-    MyApp,
-    PrivacyPage,
-    TermsPage
+    MyApp
   ],
   providers: [
     AdMobFree,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     LicenseProvider,
     MarioServiceProvider,
     NativeAudio,
     SplashScreen,
     StatusBar,
-    Storage,
-    SettingsProvider
+    SettingsProvider,
+    Storage
   ]
 })
-export class AppModule {}
+export class AppModule { }

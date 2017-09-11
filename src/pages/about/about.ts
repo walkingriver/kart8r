@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, IonicPage } from 'ionic-angular';
 import { TermsPage } from "../terms/terms";
 import { PrivacyPage } from "../privacy/privacy";
 import { AcknowledgementsPage } from "../acknowledgements/acknowledgements";
 
+@IonicPage()
 @Component({
   selector: 'page-about',
   templateUrl: 'about.html'
