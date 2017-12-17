@@ -29,6 +29,7 @@ plugins/ios.json
 www/
 $RECYCLE.BIN/
 .sourcemaps/
+releases/
 
 .DS_Store
 Thumbs.db

@@ -5,7 +5,8 @@ mk-container {
   border-style: inset;
   border-color: antiquewhite;
   border-width: 1px;
-  width: 80px;
+  min-width: 80px;
+  width: 100%;
   position: relative;
   perspective: 3000px;
   overflow: hidden;
@@ -27,10 +28,11 @@ mk-container {
   margin: 0;
   display: block;
   position: absolute;
-  width: 58px;
+  min-width: 58px;
+  width: 95%;
   height: 80px;
-  left: 10px;
-  top: 10px;
+  left: 5%;
+  top: 5px;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   }
